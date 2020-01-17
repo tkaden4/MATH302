@@ -1,12 +1,12 @@
 import Prelude.Nat
 
 -- Not in axiom list, but covered in class
+-- (ab)^k = a^k * b^k
 postulate powerDistributesRightMult : (a : Nat) -> (b : Nat) -> (k : Nat) -> power (a * b) k = (power a k) * (power b k)
 
 -- a | b
 data Divides : (a: Nat) -> (b: Nat) -> Type where
   MkDivides : DPair Nat (\n => b = n * a) -> Divides a b
-
 
 -- a = b & x = y -> a + x = b + y
 additionEquality : {a: Nat} -> {b: Nat} -> a = n -> b = m -> a + b = n + m
