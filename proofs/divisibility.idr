@@ -1,5 +1,8 @@
 import Prelude.Nat
 
+-- Not in axiom list, but covered in class
+postulate powerDistributesRightMult : (a : Nat) -> (b : Nat) -> (k : Nat) -> power (a * b) k = (power a k) * (power b k)
+
 data Divides : (a: Nat) -> (b: Nat) -> Type where
   MkDivides : DPair Nat (\n => b = n * a) -> Divides a b
 
@@ -22,3 +25,9 @@ theorem1_2 {a} {b} {c} (MkDivides (bFactor ** bProof)) (MkDivides (cFactor ** cP
   rewrite cProof in
   rewrite bProof in
   MkDivides((cFactor * bFactor) ** multAssociative cFactor bFactor a)
+
+-- a | b -> a^k | b^k
+theorem1_4 : {a : Nat} -> {b : Nat} -> {k : Nat} -> Divides a b -> Divides (power a k) (power b k) 
+theorem1_4 {a} {k} (MkDivides (bFactor ** bProof)) =
+  rewrite bProof in 
+  MkDivides((power bFactor k) ** powerDistributesRightMult bFactor a k)
