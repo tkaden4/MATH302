@@ -3,8 +3,6 @@ import Prelude.Nat
 data Divides : (a: Nat) -> (b: Nat) -> Type where
   MkDivides : DPair Nat (\n => b = n * a) -> Divides a b
 
-
-
 additionEquality : {a: Nat} -> {b: Nat} -> a = n -> b = m -> a + b = n + m
 additionEquality pa pb = 
   rewrite pa in 
